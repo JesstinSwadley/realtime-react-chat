@@ -13,6 +13,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL
 
+// Mongoose Connection
 mongoose
 	.connect(DB_URL, {
 		useNewURLParser: true,
@@ -23,8 +24,6 @@ mongoose
 	.catch((err) => {
 		console.log(err.message);
 	});
-
-	
 
 // Server
 const server = app.listen(PORT, () => {
