@@ -13,6 +13,12 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL
 
+// Route Requirements
+const userRoutes = require("./router/user.route");
+
+// Routes
+app.use("/api/auth/", userRoutes);
+
 // Mongoose Connection
 mongoose
 	.connect(DB_URL, {
