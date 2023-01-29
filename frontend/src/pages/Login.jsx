@@ -36,10 +36,12 @@ function Login() {
 		if(handleValidation()) {
 			const { password, username } = values;
 
-			const { data } = await axios.post(loginRoute, {
-				username,
-				password
-			});
+			const { data } = await axios
+				.post(loginRoute, {
+					username,
+					password
+				})
+				.catch(err => console.log(err));
 
 			if(data.status === false) {
 				toast.error(data.msg, toastOptions);

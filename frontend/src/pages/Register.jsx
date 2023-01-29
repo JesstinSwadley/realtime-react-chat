@@ -38,11 +38,13 @@ function Register() {
 		if(handleValidation()) {
 			const { password, username, email } = values;
 
-			const { data } = await axios.post(registerRoute, {
-				username,
-				email,
-				password
-			});
+			const { data } = await axios
+				.post(registerRoute, {
+					username,
+					email,
+					password
+				})
+				.catch(err => console.log(err));
 
 			if(data.status === false) {
 				toast.error(data.msg, toastOptions);

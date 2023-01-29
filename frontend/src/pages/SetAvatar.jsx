@@ -35,9 +35,11 @@ function SetAvatar() {
 			toast.error("Please select an avatar", toastOptions)
 		} else {
 			const user = await JSON.parse(localStorage.getItem("chat-app-user"));
-			const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
-				image:avatars[selectedAvatar]
-			});
+			const { data } = await axios
+				.post(`${setAvatarRoute}/${user._id}`, {
+					image:avatars[selectedAvatar]
+				})
+				.catch(err => console.log(err));
 
 			if(data.isSet) {
 				user.isAvatarImageSet = true;
@@ -54,7 +56,9 @@ function SetAvatar() {
 		const generateAvatar = async () => {
 			const data = [];
 			for(let i=0; i<4; i++) {
-				const image = await axios.get(`${api}/${Math.round(Math.random() * 1000)}`);
+				const image = await axios
+					.get(`${api}/${Math.round(Math.random() * 1000)}`)
+					.catch(err => console.log(err));
 
 				const buffer = new Buffer(image.data);
 				data.push(buffer.toString("base64"));
